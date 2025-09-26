@@ -30,12 +30,15 @@ public class Drawing {
      */
     public void draw(String format, String filename) {
         // TODO: Do you notice any issues here?
+        // YES, we repeat lots of code. Refactor by simply if-elsing the writer.
         if (format.equals("jpeg")) {
             try (Writer writer = new JPEGWriter(filename + ".jpeg")) {
                 for (Shape shape : this.shapes) {
                     // TODO: What is the issue of the behavior here?
                     Line[] lines = shape.toLines();
                     shape.draw(writer, lines);
+                    // YES, we call toLines() in the Drawing class, which is not its responsibility.
+                    // Move this to a single call --> shape.draw(writer);
                 }
             } catch (IOException e) {
                 e.printStackTrace();

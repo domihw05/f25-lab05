@@ -15,4 +15,10 @@ public class Road {
     public boolean[] getOccupied() {
         return this.occupied;
     }
+
+    // MOVED FROM FROGGER CLASS (POOR RESPONSIBILITY ASSIGNMENT -- ANTIPATTERN: Feature envy)
+    public boolean isOccupied(int position) {
+        boolean[] occupied = getOccupied();
+        return occupied[position];
+    }
 }
